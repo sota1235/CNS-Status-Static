@@ -16,7 +16,7 @@
 #
 # Crontab:
 #   ex)
-#       2 * * * * /usr/local/bin/python /home/#{your_login_name}/src/make_json.py
+#       */10 * * * * /usr/local/bin/python /home/#{your_login_name}/src/make_json.py
 #
 # Author:
 #   @sota1235

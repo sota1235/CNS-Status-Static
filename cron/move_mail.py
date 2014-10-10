@@ -3,12 +3,12 @@
 
 # Description:
 #   Filtering for 'CNS Printer Status' mail to
-#   the  exclusive folder you made.
+#   the exclusive folder you made.
 #
 # Crontab:
 #   ex)
-#       1 * * * * /usr/local/bin/python /home/#{your_login_name}/src/move_mail.py /home/{login_name}/Maildir/cur
-#       1 * * * * /usr/local/bin/python /home/#{your_login_name}/src/move_mail.py /home/{login_name}/Maildir/new
+#       */10 * * * * /usr/local/bin/python /home/#{your_login_name}/src/move_mail.py /home/{login_name}/Maildir/cur
+#       */10 * * * * /usr/local/bin/python /home/#{your_login_name}/src/move_mail.py /home/{login_name}/Maildir/new
 #
 # Author:
 #   @sota1235
