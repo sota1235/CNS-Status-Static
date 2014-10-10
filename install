@@ -1,0 +1,87 @@
+#!/bin/sh 
+LOGIN_NAME=""
+VIEW_PATH="printer"
+
+echo "Install start"
+
+# Get Login Name
+echo "First, enter your login name."
+echo "ex) t14000tk"
+read LOGIN_NAME
+
+ls /home/${LOGIN_NAME}/CNSiMac || {echo "Login name error...please retry."; exit 1}
+
+# Generate files from Login Name
+echo "Make files from your login name in 'lib' folder"
+
+cp `pwd`/view/js/ajax.js
+cp `pwd`/view/js/jquery-migrate-1.2.1.min.js
+cp `pwd`/view/js/jquery-1.11.0.min.js
+
+sed s/#{your_login_name}/${LOGIN_NAME}/g \
+  `pwd`/view/js/script.js >> `pwd`/lib/view/js/script.js
+sed s/#{your_login_name}/${LOGIN_NAME}/g \
+  `pwd`/cron/make_json.py >> `pwd`/lib/cron/make_json.py
+sed s/#{your_login_name}/${LOGIN_NAME}/g \
+  `pwd`/cron/move_mail.py >> `pwd`/lib/cron/move_mail.py
+
+# Make files for crontab
+echo "Make 'src' folder under your home directory"
+
+if [ ! -d "src" ]; then
+  mkdir ~/src
+fi
+
+cp `pwd`/lib/cron/make_json.py ~/src/
+cp `pwd`/lib/cron/move_mail.py ~/src/
+
+# Make public_html folder
+if [ ! -d /home/${LOGIN_NAME}/public_html ]; then
+  echo "Make 'public_html' folder under your home directory."
+  mkdir /home/${LOGIN_NAME}/public_html
+fi
+
+# Make public folder for web application
+echo "Make 'printer' folder under your 'public_html' folder."
+if [ ! -d /home/${LOGIN_NAME}/public_html/${VIEW_PATH} ]; then
+  mkdir /home/${LOGIN_NAME}/public_html/${VIEW_PATH}
+else
+  echo "The 'printer' folder is already exists."
+  echo "Are you sure you want to delete files under 'printer' folder?"
+  echo "(yes/no)"
+
+  while :
+  do
+    read CONFIRM
+
+    case ${CONFIRM} in
+      "yes")
+        echo "Delete files and copy some files."
+        rm -r ~/public_html/printer/*
+        break
+        ;;
+      "no")
+        echo "Then, enter folder name you like."
+        echo "ex) 'CNS_printer'"
+        read VIEW_PATH
+        break
+        ;;
+      *)
+        echo "Plese enter 'yes' or 'no'."
+        read CONFIRM
+        ;;
+    esac
+  done
+fi
+
+# Copy files to public folder
+echo "Is installoing..."
+
+cp    `pwd`/view/index.html      ~/public_html/${VIEW_PATH}/
+cp -R `pwd`/view/Flat-UI-master  ~/public_html/${VIEW_PATH}/
+cp -R `pwd`/lib/view/js          ~/public_html/${VIEW_PATH}/
+cp    `pwd`/public_html/json.php ~/public_html/${VIEW_PATH}/
+
+echo "Installation is completed!!"
+echo "You can access to the website."
+echo "http://web.sfc.keio.ac.jp/~${LOGIN_NAME}/${VIEW_PATH}/index.html"
