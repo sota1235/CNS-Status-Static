@@ -14,9 +14,9 @@ ls /home/${LOGIN_NAME}/CNSiMac || {echo "Login name error...please retry."; exit
 # Generate files from Login Name
 echo "Make files from your login name in 'lib' folder"
 
-cp `pwd`/view/js/ajax.js
-cp `pwd`/view/js/jquery-migrate-1.2.1.min.js
-cp `pwd`/view/js/jquery-1.11.0.min.js
+cp `pwd`/view/js/ajax.js                      `pwd`/lib/view/js/
+cp `pwd`/view/js/jquery-migrate-1.2.1.min.js  `pwd`/lib/view/js/
+cp `pwd`/view/js/jquery-1.11.0.min.js         `pwd`/lib/view/js/
 
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
   `pwd`/view/js/script.js >> `pwd`/lib/view/js/script.js
@@ -63,7 +63,19 @@ else
       "no")
         echo "Then, enter folder name you like."
         echo "ex) 'CNS_printer'"
-        read VIEW_PATH
+        while :
+        do
+          read VIEW_PATH
+
+          case VIEW_PATH in
+            "")
+              echo "Please enter folder name."
+              ;;
+            *)
+              break
+              ;;
+          esac
+        done
         break
         ;;
       *)
