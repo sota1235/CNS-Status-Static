@@ -31,7 +31,7 @@ Then, enter the commands.
 
 ```Shell
 
-$ cd ~/
+$ cd
 
 $ git clone https://github.com/sota1235/CNS-Status-Static.git
 
@@ -55,9 +55,9 @@ Then, please add the following statement.
 
 ```
 # m h dom mon dow command
-2 * * * * /usr/local/bin/python /home/{your_login_name}/src/make_json.py
-1 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/cur/
-1 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/new/
+*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/make_json.py
+*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/cur/
+*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/new/
 ```
 
 The installation completes	.
