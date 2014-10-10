@@ -16,7 +16,7 @@
 #
 # Crontab:
 #   ex)
-#       2 * * * * /usr/local/bin/python /home/{your_login_name}/src/make_json.py
+#       2 * * * * /usr/local/bin/python /home/#{your_login_name}/src/make_json.py
 #
 # Author:
 #   @sota1235
@@ -27,7 +27,7 @@ import codecs
 import os.path
 import datetime
 
-login_name = '{your_login_name}'
+login_name = '#{your_login_name}'
 
 path_new = '/home/' + login_name + '/Maildir/.CNS.CNS_Printer/new/'
 path_cur = '/home/' + login_name + '/Maildir/.CNS.CNS_Printer/cur/'
