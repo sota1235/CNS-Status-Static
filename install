@@ -9,7 +9,7 @@ echo "First, enter your login name."
 echo "ex) t14000tk"
 read LOGIN_NAME
 
-ls /home/${LOGIN_NAME}/CNSiMac || {echo "Login name error...please retry."; exit 1}
+ls /home/${LOGIN_NAME}/CNSiMac || {echo "Login name error...please retry."; exit 1;}
 
 # Generate files from Login Name
 echo "Make files from your login name in 'lib' folder"
