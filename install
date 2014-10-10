@@ -30,6 +30,8 @@ sed s/#{your_login_name}/${LOGIN_NAME}/g \
   `pwd`/cron/make_json.py >> `pwd`/lib/cron/make_json.py
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
   `pwd`/cron/move_mail.py >> `pwd`/lib/cron/move_mail.py
+sed s/#{your_login_name}/${LOGIN_NAME}/g \
+  `pwd`/static/json.php   >> `pwd`/lib/static/json.php
 
 # Make files for crontab
 cecho "### Make 'src' folder under your home directory### "
@@ -98,7 +100,7 @@ cecho "### Is installoing... ###"
 cp    `pwd`/view/index.html      ~/public_html/${VIEW_PATH}/
 cp -R `pwd`/view/Flat-UI-master  ~/public_html/${VIEW_PATH}/
 cp -R `pwd`/lib/view/js          ~/public_html/${VIEW_PATH}/
-cp    `pwd`/static/json.php ~/public_html/${VIEW_PATH}/
+cp    `pwd`/lib/static/json.php  ~/public_html/${VIEW_PATH}/
 
 cecho "### Installation is completed!! ###"
 cecho "### You can access to the website ###"
