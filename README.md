@@ -64,7 +64,7 @@ The installation completes	.
 
 You can access to the URL.
 
- * http://web.sfc.keio.ac.jp/~{your CNS login name}/printer/index.html
+ * [http://web.sfc.keio.ac.jp/~{your CNS login name}/printer/index.html](http://web.sfc.keio.ac.jp/~{your CNS login name}/printer/index.html)
 
 ### Author
 
