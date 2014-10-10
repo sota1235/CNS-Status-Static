@@ -1,4 +1,4 @@
-var login_name = 'your_login_name'
+var login_name = '#{your_login_name}'
 
 var ajax = new Ajax('http://web.sfc.keio.ac.jp/~' + login_name + 'printer/json.php');
 var place = [
