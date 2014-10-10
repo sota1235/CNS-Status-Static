@@ -5,7 +5,7 @@ LOGIN_NAME=""
 VIEW_PATH="printer"
 
 # functions
-cecho() { echo -e "\e[34m$*\e[m"; }
+function cecho { echo -e "\e[34m$*\e[m"; }
 
 
 cecho "Install start"
@@ -34,8 +34,8 @@ sed s/#{your_login_name}/${LOGIN_NAME}/g \
 # Make files for crontab
 cecho "### Make 'src' folder under your home directory### "
 
-if [ ! -d "src" ]; then
-  mkdir ~/src
+if [ ! -d /home/${LOGIN_NAME}/src ]; then
+  mkdir /home/${LOGIN_NAME}/src
 fi
 
 cp `pwd`/lib/cron/make_json.py ~/src/
@@ -98,7 +98,7 @@ cecho "### Is installoing... ###"
 cp    `pwd`/view/index.html      ~/public_html/${VIEW_PATH}/
 cp -R `pwd`/view/Flat-UI-master  ~/public_html/${VIEW_PATH}/
 cp -R `pwd`/lib/view/js          ~/public_html/${VIEW_PATH}/
-cp    `pwd`/public_html/json.php ~/public_html/${VIEW_PATH}/
+cp    `pwd`/static/json.php ~/public_html/${VIEW_PATH}/
 
 cecho "### Installation is completed!! ###"
 cecho "### You can access to the website ###"
