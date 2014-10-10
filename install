@@ -7,8 +7,7 @@ VIEW_PATH="printer"
 # functions
 function cecho { echo -e "\e[34m$*\e[m"; }
 
-
-cecho "Install start"
+cecho "### Install start ###"
 
 # Get Login Name
 cecho "### First, enter your login name ###"
