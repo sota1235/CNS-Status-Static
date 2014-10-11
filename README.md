@@ -55,9 +55,8 @@ Then, please add the following statement.
 
 ```
 # m h dom mon dow command
-*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/make_json.py
-*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/cur/
-*/10 * * * * /usr/local/bin/python /home/{your_login_name}/src/move_mail.py /home/{your_login_name}/Maildir/new/
+*/30 * * * * /home/{your_login_name}/src/find_mail
+*/10 * * * * /home/{your_login_name}/src/make_json
 ```
 
 The installation completes	.
