@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Description:
+#   Find CNS Printer Status mail and read file.
+#   Then, write data to ~/src/mails.txt
+# 
+# Crontab:
+#   */10 * * * * /home/#{your_login_name}/src/find_mail
+
+# Replace with sed command
+LOGIN_NAME=#{your_login_name}
+
+MAIL_PATH_CUR=/home/${LOGIN_NAME}/Maildir/cur/*
+MAIL_PATH_NEW=/home/${LOGIN_NAME}/Maildir/new/*
+MAIL_FILE=/home/${LOGIN_NAME}/src/mails.txt
+
+# Reset the mails.txt
+echo "" > ${MAIL_FILE}
+
+# Scan mails
+for file in ${MAIL_PATH_CUR} ${MAIL_PATH_NEW}
+do
+  if test "`grep 'CNS\ Printer\ Status' ${file}`" != ""; then
+    FILE_DATE=`date +%Y%m%d%H -r ${file}`
+    NOW_DATE=`date +%Y%m%d%H`
+    if test `expr ${NOW_DATE} - ${FILE_DATE}` -le 100; then
+      tail -n 18 ${file} >> ${MAIL_FILE}
+      echo "-for split-" >> ${MAIL_FILE}
+    fi
+  fi
+done
