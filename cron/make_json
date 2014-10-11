@@ -32,12 +32,12 @@ path_log  = '/home/' + login_name + '/src/log.txt'
 mails_txt = codecs.open(path_mail, 'r', 'shift-jis').read()
 
 # Date
-d = r_date.search(mails_txt)
+d = r_date.search(mails_txt).group(0)
 date = u'{0}年{1}月{2}日 {3}'.format(d[1:5], d[6:8], d[9:11], d[11:-1])
 
 # Printer Status
 tmp = []
-for l in mails.txt.split('\n')[3:]:
+for l in mails_txt.split('\n')[3:]:
     tmp.append(map(lambda x: x.decode('utf-8'),l.split()[2:5]))
 
 status = [
