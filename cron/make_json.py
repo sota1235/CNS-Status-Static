@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
 # Description:
@@ -6,7 +6,7 @@
 #
 # Format:
 #   {
-#       "date": "メールに記載されてる日付"
+#       "date": "Date written in CNS Printer Status mail"
 #       "status": [
 #           [
 #               [ "X%", "Y%", "Z%"],
@@ -15,67 +15,47 @@
 #   }
 #
 # Crontab:
-#   ex)
-#       */10 * * * * /usr/local/bin/python /home/#{your_login_name}/src/make_json.py
-#
-# Author:
-#   @sota1235
+#    */10 * * * * /usr/local/bin/python /home/#{your_login_name}/src/make_json.py
 
-import glob
 import json
+import re
 import codecs
-import os.path
-import datetime
+
+# regular expression
+r_date = re.compile('\[.*\]')
 
 login_name = '#{your_login_name}'
 
-path_new = '/home/' + login_name + '/Maildir/.CNS.CNS_Printer/new/'
-path_cur = '/home/' + login_name + '/Maildir/.CNS.CNS_Printer/cur/'
-path_log = '/home/' + login_name + '/src/log.txt'
+path_mail = '/home/' + login_name + '/src/mails.txt'
+path_log  = '/home/' + login_name + '/src/log.txt'
 
-log_txt = ''
+mails_txt = codecs.open(path_mail, 'r', 'shift-jis').read()
 
-def get_mail(path):
-    mail_list = glob.glob(path + '*.*')
-    update_time = 0
-    mail = ''
-    for m in mail_list:
-        if update_time < os.path.getatime(m):
-            update_time = os.path.getatime(m)
-            mail = m
-    global log_txt
-    log_txt = str(datetime.datetime.today()) + " : " +  mail.replace(path, '')
-    return codecs.open(mail, 'r', 'shift-jis').read().split('\n')[28:]
+# Date
+d = r_date.search(mails_txt)
+date = u'{0}年{1}月{2}日 {3}'.format(d[1:5], d[6:8], d[9:11], d[11:-1])
 
-if len(os.listdir(path_new)) != 0:
-    mail_txt = get_mail(path_new)
-else:
-    mail_txt = get_mail(path_cur)
-
-if '[' in mail_txt[0]:
-    f_line = mail_txt[0]
-    o_line = mail_txt[3:-1]
-else:
-    f_line = mail_txt[1]
-    o_line = mail_txt[4:-1]
-
-d = f_line.replace(' ','').decode('utf-8')
-date = u"{0}年{1}月{2}日 {3}".format(d[1:5], d[6:8], d[9:11], d[11:-1])
+# Printer Status
 tmp = []
-
-for l in o_line:
+for l in mails.txt.split('\n')[3:]:
     tmp.append(map(lambda x: x.decode('utf-8'),l.split()[2:5]))
 
-status = [tmp[10],tmp[13],tmp[14],tmp[12],tmp[11],tmp[8],tmp[9],tmp[7],tmp[4],tmp[3],tmp[2],tmp[1],tmp[0],tmp[5],tmp[6]]
+status = [
+        tmp[10],tmp[13],tmp[14],tmp[12],
+        tmp[11],tmp[8], tmp[9], tmp[7],
+        tmp[4], tmp[3], tmp[2], tmp[1],
+        tmp[0], tmp[5], tmp[6]
+        ]
 
+# make associative array for json
 j = {'date': date, 'status': status}
 
-# mail.jsonに書き込み
-f = codecs.open("/home/" + login_name + "/public_html/mail.json", "w", "utf-8")
-f.write(json.dumps(j,indent=4,ensure_ascii=False))
+# write to mail.json
+f = codecs.open('/home/' + login_name + '/public_html/mail.json', 'w', 'utf-8')
+f.write(json.dumps(j, indent=4, ensure_ascii=False))
 f.close()
 
+# write to log.txt
 log = open(path_log, 'a+')
-log.write(date.encode('utf-8'))
-log.write(' : ' + log_txt + '\n')
+log.write(date.encode('utf-8') + '\n')
 log.close()
