@@ -22,7 +22,6 @@ do
     FILE_DATE=`date +%Y%m%d%H -r ${file}`
     if test ${NEWEST_MAIL_DATE} -le ${FILE_DATE}; then
       tail -n 18 ${file} > ${MAIL_FILE}
-      echo "-for split-" >> ${MAIL_FILE}
       NEWEST_MAIL_DATE=${FILE_DATE}
     fi
   fi
