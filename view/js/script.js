@@ -1,12 +1,10 @@
-var login_name = '#{your_login_name}'
-
-var ajax = new Ajax('http://web.sfc.keio.ac.jp/~' + login_name + '/#{printer}/json.php');
+var ajax = new Ajax('http://web.sfc.keio.ac.jp/~#{your_login_name}/#{printer}/json.php');
 var place = [
   "ITC事務室入り口横(壁側)",
   "ITC 入り口横左",
   "ITC 入り口横右",
   "メディアセンター右",
-  "メディアセンター左"
+  "メディアセンター左",
   "λ11左",
   "λ11右",
   "λ21",
