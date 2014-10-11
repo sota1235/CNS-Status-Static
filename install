@@ -42,6 +42,9 @@ fi
 cp `pwd`/lib/cron/make_json /home/${LOGIN_NAME}/src/
 cp `pwd`/lib/cron/find_mail /home/${LOGIN_NAME}/src/
 
+chmod 755 /home/${LOGIN_NAME}/src/make_json
+chmod 755 /home/${LOGIN_NAME}/src/find_mail
+
 # Make public_html folder
 if [ ! -d /home/${LOGIN_NAME}/public_html ]; then
   cecho "### Make 'public_html' folder under your home directory ###"
@@ -79,6 +82,7 @@ else
               cecho "### Please enter folder name ###"
               ;;
             *)
+              cecho "### The folder name is ${VIEW_PATH} ###"
               break
               ;;
           esac
@@ -92,6 +96,14 @@ else
     esac
   done
 fi
+
+# Fix paths in files
+sed s/#{printer}/${VIEW_PATH}/g \
+  `pwd`/lib/static/json.php         > `pwd`/lib/static/json.php
+sed s/#{printer}/${VIEW_PATH}/g \
+  `pwd`/lib/viwe/js/script.js       > `pwd`/lib/view/js/script.js
+sed s/#{printer}/${VIEW_PATH}/g \
+  /home/${LOGIN_NAME}/src/make_json > /home/${LOGIN_NAME}/src/make_json
 
 # Copy files to public folder
 cecho "### Is installoing... ###"

@@ -1,6 +1,6 @@
 var login_name = '#{your_login_name}'
 
-var ajax = new Ajax('http://web.sfc.keio.ac.jp/~' + login_name + 'printer/json.php');
+var ajax = new Ajax('http://web.sfc.keio.ac.jp/~' + login_name + '/#{printer}/json.php');
 var place = [
   "ITC事務室入り口横(壁側)",
   "ITC 入り口横左",
