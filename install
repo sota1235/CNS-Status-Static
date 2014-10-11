@@ -89,11 +89,14 @@ if [ ! -d /home/${LOGIN_NAME}/src ]; then
   mkdir /home/${LOGIN_NAME}/src
 fi
 
-cp `pwd`/lib/cron/make_json /home/${LOGIN_NAME}/src/
 cp `pwd`/lib/cron/find_mail /home/${LOGIN_NAME}/src/
+cp `pwd`/lib/cron/make_json /home/${LOGIN_NAME}/src/
 
-chmod 755 /home/${LOGIN_NAME}/src/make_json
 chmod 755 /home/${LOGIN_NAME}/src/find_mail
+chmod 755 /home/${LOGIN_NAME}/src/make_json
+
+/home/${LOGIN_NAME}/src/find_mail
+/home/${LOGIN_NAME}/src/make_json
 
 # Copy files to public folder
 cecho "### Is installoing... ###"
