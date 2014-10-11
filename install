@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/zsh 
 
 # variable
 LOGIN_NAME=""
@@ -26,9 +26,9 @@ cp `pwd`/view/js/jquery-1.11.0.min.js         `pwd`/lib/view/js/
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
   `pwd`/view/js/script.js > `pwd`/lib/view/js/script.js
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
-  `pwd`/cron/make_json.py > `pwd`/lib/cron/make_json.py
+  `pwd`/cron/make_json    > `pwd`/lib/cron/make_json
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
-  `pwd`/cron/move_mail.py > `pwd`/lib/cron/move_mail.py
+  `pwd`/cron/find_mail    > `pwd`/lib/cron/find_mail
 sed s/#{your_login_name}/${LOGIN_NAME}/g \
   `pwd`/static/json.php   > `pwd`/lib/static/json.php
 
@@ -39,8 +39,8 @@ if [ ! -d /home/${LOGIN_NAME}/src ]; then
   mkdir /home/${LOGIN_NAME}/src
 fi
 
-cp `pwd`/lib/cron/make_json.py ~/src/
-cp `pwd`/lib/cron/move_mail.py ~/src/
+cp `pwd`/lib/cron/make_json /home/${LOGIN_NAME}/src/
+cp `pwd`/lib/cron/find_mail /home/${LOGIN_NAME}/src/
 
 # Make public_html folder
 if [ ! -d /home/${LOGIN_NAME}/public_html ]; then
