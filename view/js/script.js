@@ -33,6 +33,14 @@ ajax.on_get = function(data){
 
     $tr.append($('<td></td>').text(place[i]));
     for(var j=0;j<3;j++){
+      /* メール本文がエラーの際、そのまま表示するよう処理 */
+      var re = /^\d+%$/;
+      if(!re.test(p_status[i][j])) {
+        $tr.append($('<td></td>')
+            .text(p_status[i][j]);
+        continue;
+      }
+
       if(Number(p_status[i][j].slice(0, -1)) <= judge[j]){
         $tr.append($('<td></td>')
             .css("background-color","#FF8080")
