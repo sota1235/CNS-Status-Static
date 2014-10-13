@@ -36,9 +36,11 @@ ajax.on_get = function(data){
       /* メール本文がエラーの際、そのまま表示するよう処理 */
       var re = /^\d+%$/;
       if(!re.test(p_status[i][j])) {
-        $tr.append($('<td></td>')
-            .text(p_status[i][j]);
-        continue;
+        $tr.append($('<td colspan="3"></td>')
+            .css("background-color", "#FF8080")
+            .css("color", "#FFFFFF")
+            .text('Error: 元のメール本文を確認してください'));
+        break;
       }
 
       if(Number(p_status[i][j].slice(0, -1)) <= judge[j]){
