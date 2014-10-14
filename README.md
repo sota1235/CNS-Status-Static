@@ -7,11 +7,11 @@ View the CNS printer status from Mail data.
 
 ### Description
 
-You can see the CNS printer status on the website.
+You can see the CNS Printer Status on the website.
 
 ### Demo
 
-[Printer Status Viewer](http://printer.sota1235.net)
+[Printer Status Viewer](http://web.sfc.keio.ac.jp/~t11460ss/printer/index.html)
 
 ![demo.png](http://i.gyazo.com/2df1ea5f294b92153f21d501cdf9d1ae.png)
 
@@ -22,6 +22,8 @@ You can see the CNS printer status on the website.
 * PHP 5.3.3
 
 (Enviroment of ccx September 28, 2014)
+
+And if you use auto filing for `CNS Printer Status`, you need to stop it.
 
 ### Install
 
