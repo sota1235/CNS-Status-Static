@@ -60,7 +60,6 @@ else
         ;;
       *)
         cecho "### Plese enter 'yes' or 'no' ###"
-        read CONFIRM
         ;;
     esac
   done
