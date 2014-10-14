@@ -13,7 +13,7 @@ You can see the CNS printer status on the website.
 
 [Printer Status Viewer](http://printer.sota1235.net)
 
-![demo.png](http://i.gyazo.com/6062cbadf9f8328c8579828159219836.png)
+![demo.png](http://i.gyazo.com/2df1ea5f294b92153f21d501cdf9d1ae.png)
 
 ### Requirement
 
@@ -55,7 +55,7 @@ Then, please add the following statement.
 
 ```
 # m h dom mon dow command
-*/30 * * * * /home/{your_login_name}/src/find_mail
+*/30 * * * * /home/{your_login_name}/src/find_mail 1 > /dev/null 2 > /dev/null
 */10 * * * * /home/{your_login_name}/src/make_json
 ```
 
