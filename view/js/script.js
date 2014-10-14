@@ -59,12 +59,5 @@ ajax.on_get = function(data){
 }
 
 $(function() {
-  var $reload = $("#reload");
-
   ajax.get();
-  /* event */
-  $reload.click(
-    ajax.get()
-  );
-
 });
