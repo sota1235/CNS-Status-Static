@@ -36,6 +36,9 @@ ajax.on_get = function(data){
       /* メール本文がエラーの際、そのまま表示するよう処理 */
       var re = /^\d+%$/;
       if(!re.test(p_status[i][j])) {
+        if(p_status[i][j] == 'Err') {
+          break;
+        }
         $tr.append($('<td colspan="3"></td>')
             .css("background-color", "#FF8080")
             .css("color", "#FFFFFF")
