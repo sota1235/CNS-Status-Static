@@ -1,18 +1,13 @@
-#!/bin/zsh 
+#!/bin/zsh
 
 # variable
-LOGIN_NAME=""
+LOGIN_NAME=`whoami`
 VIEW_PATH="printer"
 
 # functions
 function cecho { echo -e "\e[34m$*\e[m"; }
 
 cecho "### Install start ###"
-
-# Get Login Name
-cecho "### First, enter your login name ###"
-cecho "ex) t14000tk"
-read LOGIN_NAME
 
 # Make public_html folder
 if [ ! -d /home/${LOGIN_NAME}/public_html ]; then
