@@ -29,7 +29,7 @@ ajax.on_get = function(data){
   /* insert into table */
   for(var i=0;i<p_status.length;i++){
     var $tr = $('<tr></tr>');
-    var judge = [25, 50, 25]; // トレイ1,2,3の警告基準
+    var judge = [25, 50, 50]; // トレイ1,2,3の警告基準
 
     $tr.append($('<td></td>').text(place[i]));
     for(var j=0;j<3;j++){
