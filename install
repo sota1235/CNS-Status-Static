@@ -89,8 +89,22 @@ cp `pwd`/lib/cron/make_json /home/${LOGIN_NAME}/src/
 chmod 755 /home/${LOGIN_NAME}/src/find_mail
 chmod 755 /home/${LOGIN_NAME}/src/make_json
 
+# Set .procmailrc
+cecho "### Set .procmailrc ###"
+if [ -e /home/${LOGIN_NAME}/.procmailrc ]; then
+    cecho "### Warming! You seem to set procmail before. You should set .procmailrc yourself or use cron."
+else
+    sed s/#{your_login_name}/${LOGIN_NAME}/g \
+        `pwd`/procmail/.procmailrc    > `pwd`/lib/procmail/.procmailrc
+    cp `pwd`/lib/procmail/.procmailrc /home/${LOGIN_NAME}/
+    chmod 644 /home/${LOGIN_NAME}/.procmailrc
+fi
+
+
+
+cecho "Checking mails"
 /home/${LOGIN_NAME}/src/find_mail
-/home/${LOGIN_NAME}/src/make_json
+python /home/${LOGIN_NAME}/src/make_json
 
 # Copy files to public folder
 cecho "### Is installoing... ###"
