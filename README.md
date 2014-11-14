@@ -21,6 +21,8 @@ You can see the CNS Printer Status on the website.
 
 * PHP 5.3.3
 
+* Procmail
+
 (Enviroment of ccx September 28, 2014)
 
 And if you use auto filing for `CNS Printer Status`, you need to stop it.
@@ -43,30 +45,12 @@ $ ./install
 
 ```
 
-Then, edit crontab.
-
-You need to enter the command to edit crontab.
-
-```Shell
-
-$ crontab -e
-
-```
-
-Then, please add the following statement.
-
-```
-# m h dom mon dow command
-*/30 * * * * /home/{your_login_name}/src/find_mail 1 > /dev/null 2 > /dev/null
-*/10 * * * * /home/{your_login_name}/src/make_json
-```
-
-The installation completes	.
-
-You can access to the URL.
+Then, you can access to the URL.
 
  * [http://web.sfc.keio.ac.jp/~{your CNS login name}/printer/index.html](http://web.sfc.keio.ac.jp/~{your CNS login name}/printer/index.html)
 
 ### Author
 
 [@sota1235](https://github.com/sota1235)
+
+@okatooth
